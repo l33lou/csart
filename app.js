@@ -116,4 +116,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   animate();
 
+
+// GESTION DU MENU BURGER MOBILE
+document.addEventListener('DOMContentLoaded', () => {
+  const burgerMenu = document.getElementById('burger-menu');
+  const navContainer = document.getElementById('nav-container');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  if (burgerMenu && navContainer) {
+    // Ouvre et ferme le menu au clic sur l'icône burger
+    burgerMenu.addEventListener('click', () => {
+      burgerMenu.classList.toggle('active');
+      navContainer.classList.toggle('open');
+    });
+
+    // Ferme automatiquement le panneau lors du clic sur un lien
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        burgerMenu.classList.remove('active');
+        navContainer.classList.remove('open');
+      });
+    });
+  }
+});
+
 });

@@ -143,20 +143,99 @@ a {
   text-decoration: none;
   transition: all 0.3s ease;
 }
-
-/* Barre de Navigation */
+/* ==========================================================================
+   MENU BURGER & RESPONSIVE MOBILE
+   ========================================================================== */
 .navbar {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 3rem;
-  background-color: rgba(36, 19, 44, 0.92);
+  padding: 1rem 3rem;
+  background-color: rgba(36, 19, 44, 0.94);
   border-bottom: 1px solid var(--accent-plum);
-  backdrop-filter: blur(8px);
-  z-index: 100;
+  z-index: 1000;
+}
+
+/* Bouton burger masqué par défaut sur ordinateur */
+.burger-menu {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0.5rem;
+  z-index: 1001;
+}
+
+.burger-menu .bar {
+  width: 26px;
+  height: 2px;
+  background-color: var(--accent-rose);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Animation des barres en croix (X) lors de l'ouverture */
+.burger-menu.active .bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.burger-menu.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.burger-menu.active .bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Styles appliqués uniquement sur écrans téléphones et tablettes */
+@media (max-width: 850px) {
+  .navbar {
+    padding: 0.8rem 1.5rem;
+  }
+
+  .burger-menu {
+    display: flex; /* Affiche le bouton burger uniquement sur petit écran */
+  }
+
+  /* Panneau latéral coulissant */
+  .nav-container {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Masqué hors écran à droite par défaut */
+    width: 75%;
+    max-width: 280px;
+    height: 100vh;
+    background-color: rgba(36, 19, 44, 0.98);
+    border-left: 1px solid var(--accent-plum);
+    box-shadow: -10px 0 25px rgba(0, 0, 0, 0.8);
+    padding: 6rem 2rem 2rem 2rem;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+  }
+
+  /* Classe ajoutée par JS pour faire glisser le menu sur l'écran */
+  .nav-container.open {
+    right: 0;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.6rem;
+  }
+
+  .nav-links a {
+    font-size: 1.2rem;
+    display: block;
+    width: 100%;
+    padding: 0.4rem 0;
+  }
 }
 
 .logo {
@@ -294,6 +373,7 @@ section h2 {
 .photo-garland-section {
   width: 100%;
   padding: 0 0 0.5rem 0;
+  margin-top: -1.2rem;
   overflow: hidden;
 }
 
