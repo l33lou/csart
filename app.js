@@ -79,12 +79,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  window.addEventListener('mousemove', (e) => {
+  // Fonction centralisée pour générer des étincelles
+  function createSparks(x, y) {
     const spawnCount = Math.floor(Math.random() * 3) + 2;
     for (let i = 0; i < spawnCount; i++) {
-      particles.push(new SparkParticle(e.clientX, e.clientY));
+      particles.push(new SparkParticle(x, y));
     }
+  }
+
+  // Événement 1 : Déplacement de la souris (Ordinateur)
+  window.addEventListener('mousemove', (e) => {
+    createSparks(e.clientX, e.clientY);
   });
+
+  // Événement 2 : Premier appui avec le doigt (Mobile)
+  window.addEventListener('touchstart', (e) => {
+    if (e.touches.length > 0) {
+      createSparks(e.touches[0].clientX, e.touches[0].clientY);
+    }
+  }, { passive: true });
+
+  // Événement 3 : Glissement du doigt sur l'écran (Mobile)
+  window.addEventListener('touchmove', (e) => {
+    if (e.touches.length > 0) {
+      createSparks(e.touches[0].clientX, e.touches[0].clientY);
+    }
+  }, { passive: true });
 
   function animate() {
     ctx.clearRect(0, 0, width, height);
