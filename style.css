@@ -889,6 +889,7 @@ section h2 {
 /* Style de l'adresse email et préparation de l'animation */
 .footer-links a.email {
   color: var(--accent-rose);
+  font-size: 0.95rem;
   text-decoration: none; /* Désactive le soulignement HTML natif */
   position: relative;
   padding-bottom: 2px;
