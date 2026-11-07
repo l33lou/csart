@@ -12,9 +12,6 @@
 </head>
 <body>
 
-  <!-- Canvas Étoiles Célestes -->
-  <!-- <canvas id="star-canvas"></canvas> -->
-
   <!-- Navigation -->
   <header class="navbar">
     <div class="logo">
@@ -36,6 +33,52 @@
   </header>
 
   <main>
+
+    <!-- Section Guirlande Photo -->
+    <section class="photo-garland-section">
+    <div class="garland-container">
+        
+        <!-- Album 1 -->
+        <div class="garland-item album-item height-md" data-album="album1">
+        <div class="garland-line"></div>
+        <img src="./images/star.png" alt="Étoile" class="garland-star">
+        <div class="photo-frame">
+            <img src="galerie-photo/talent-show-2026/78.jpg" alt="Talent Show 2026">
+            <p class="album-title">Talent Show 2026</p>
+        </div>
+        </div>
+
+        <!-- Tiret décoratif (Étoile seule) -->
+        <div class="garland-item deco-item height-lg">
+        <div class="garland-line"></div>
+        <img src="images/star.png" alt="Étoile" class="garland-star">
+        </div>
+
+        <!-- Album 2 -->
+        <div class="garland-item album-item height-sm" data-album="album2">
+        <div class="garland-line"></div>
+        <img src="images/star.png" alt="Étoile" class="garland-star">
+        <div class="photo-frame">
+            <img src="galerie-photo/concert-bang-2026/1.jpg" alt="concert bang 2026">
+            <p class="album-title">Concert Bang 2026</p>
+        </div>
+        </div>
+
+        <!-- Tiret décoratif (Étoile seule) -->
+        <div class="garland-item deco-item height-xl">
+        <div class="garland-line"></div>
+        <img src="images/star.png" alt="Étoile" class="garland-star">
+        </div>
+
+
+        <!-- Tiret décoratif (Étoile seule) -->
+        <div class="garland-item deco-item height-sm">
+        <div class="garland-line"></div>
+        <img src="images/star.png" alt="Étoile" class="garland-star">
+        </div>
+
+    </div>
+    </section>
 
 
     <!-- Présentation détaillée de l'association -->
@@ -93,6 +136,27 @@
     </div>
     </footer>
 
+    <div class="gallery-modal" id="gallery-modal">
+        <div class="gallery-modal-content">
+            <span class="gallery-modal-close" id="gallery-modal-close">&times;</span>
+            <h3 id="gallery-modal-title">Titre de l'album</h3>
+            
+            <div class="lightbox-viewer">
+            <button class="lightbox-btn" id="lightbox-prev">❮</button>
+            <div class="lightbox-image-container">
+                <img id="lightbox-current-img" src="" alt="Photo d'album">
+            </div>
+            <button class="lightbox-btn" id="lightbox-next">❯</button>
+            </div>
+
+            <div class="lightbox-footer">
+            <span class="lightbox-counter" id="lightbox-counter">1 / 1</span>
+            <div class="lightbox-thumbnails" id="lightbox-thumbnails"></div>
+            </div>
+        </div>
+    </div>
+
   <script src="app.js"></script>
+  <script src="photos.js"></script>
 </body>
 </html>

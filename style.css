@@ -15,7 +15,7 @@
   --accent-rose: #AF7D86;
   --text-light: #EEDCEF;
   --accent-indigo: #59438D;
-  --accent-gold: #d4b578;
+  --accent-gold: #c0a671;
 
   --font-title: 'Pretty', serif;
   --font-subtitle: 'Nemo', serif;
@@ -288,6 +288,252 @@ section h2 {
   width: 100%;
 }
 
+/* ------------------------------------------------------------------------
+   SECTION GUIRLANDE PHOTO
+   ------------------------------------------------------------------------ */
+.photo-garland-section {
+  width: 100%;
+  padding: 0 0 0.5rem 0;
+  overflow: hidden;
+}
+
+/* Conteneur à défilement horizontal */
+.garland-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 2.5rem;
+  padding: 0 3rem 1.5rem 3rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-rose) transparent;
+}
+
+.garland-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+.garland-container::-webkit-scrollbar-thumb {
+  background-color: var(--accent-rose);
+  border-radius: 10px;
+}
+
+/* Éléments de la guirlande */
+.garland-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* Tiret vertical doré */
+.garland-line {
+  width: 2px;
+  border-left: 1px dashed var(--accent-gold);
+}
+
+/* Variances de longueurs de tirets */
+.height-sm .garland-line { height: 35px; }
+.height-md .garland-line { height: 65px; }
+.height-lg .garland-line { height: 95px; }
+.height-xl .garland-line { height: 125px; }
+
+/* Étoile d'accroche */
+.garland-star {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  margin-top: -5px;
+  margin-bottom: -18px;
+  z-index: 2;
+}
+
+/* Cadre photo album accroché */
+.album-item {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.album-item:hover {
+  transform: translateY(4px) rotate(-1deg);
+}
+
+.photo-frame {
+  background-color: transparent;
+  padding: 8px 8px 12px 8px;
+  border-radius: 4px;
+  text-align: center;
+  width: 140px;
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 110px;
+  border: 2px solid var(--accent-plum);
+  object-fit: cover;
+  border-radius: 2px;
+  display: block;
+}
+
+/* Titre flottant sous la photo */
+.album-title {
+  font-family: var(--font-title);
+  font-size: 2rem;
+  color: var(--accent-plum);
+  margin-top: 8px;
+  white-space: normal;
+  line-height: 1.2;
+}
+
+/* ------------------------------------------------------------------------
+   POPUP MODALE DE L'ALBUM PHOTO
+   ------------------------------------------------------------------------ */
+.gallery-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(20, 10, 25, 0.92);
+  backdrop-filter: blur(6px);
+  z-index: 10000;
+  justify-content: center;
+  align-items: center;
+}
+/* ------------------------------------------------------------------------
+   VISIONNEUSE LIGHTBOX (AJUSTEMENT DES PHOTOS & FLÈCHES)
+   ------------------------------------------------------------------------ */
+
+/* Conteneur principal de la popup */
+.gallery-modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 900px;
+  width: 90%;
+  max-height: 90vh;
+  padding: 1.5rem 2rem;
+  overflow: hidden;
+}
+
+/* Zone centrale avec les flèches sur les côtés */
+.lightbox-viewer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 1rem;
+  margin: 1rem 0;
+  position: relative;
+}
+
+/* Conteneur de l'image principale */
+.lightbox-image-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 55vh; /* Empêche l'image de sortir de l'écran */
+  width: 100%;
+  overflow: hidden;
+}
+
+.lightbox-image-container img {
+  max-width: 100%;
+  max-height: 55vh;
+  object-fit: contain; /* Redimensionne proprement la photo sans la déformer */
+  border-radius: 8px;
+  border: 1px solid var(--accent-gold);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  transition: opacity 0.2s ease;
+}
+
+/* Boutons Flèches Suivant / Précédent (sans fond ni cercles) */
+.lightbox-btn {
+  background: transparent;
+  border: none;
+  color: var(--accent-gold);
+  font-size: 2.4rem; /* Flèche plus grande et bien visible */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, color 0.3s ease;
+  flex-shrink: 0;
+  user-select: none;
+  box-shadow: none;
+  padding: 0 0.5rem;
+}
+
+.lightbox-btn:hover {
+  background: transparent;
+  color: var(--text-light); /* Change de couleur au survol */
+  transform: scale(1.25);   /* Effet d'agrandissement fluide */
+  box-shadow: none;
+}
+
+/* Bouton Croix de fermeture */
+.gallery-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-size: 2.2rem;
+  color: var(--accent-rose);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.gallery-modal-close:hover {
+  color: var(--accent-gold);
+}
+
+/* Pied de page : Compteur & Miniatures */
+.lightbox-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+}
+
+.lightbox-counter {
+  font-family: var(--font-title);
+  color: var(--accent-rose);
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+/* Bandeau horizontal de miniatures défilables */
+.lightbox-thumbnails {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  max-width: 100%;
+  padding: 0.4rem 0.2rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-rose) transparent;
+}
+
+.lightbox-thumbnails img {
+  width: 52px;
+  height: 52px;
+  object-fit: cover;
+  border-radius: 4px;
+  opacity: 0.4;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.lightbox-thumbnails img.active,
+.lightbox-thumbnails img:hover {
+  opacity: 1;
+  border-color: var(--accent-gold);
+  transform: scale(1.08);
+}
+
 /* Hero Section */
 .hero-section {
   display: grid;
@@ -354,7 +600,7 @@ section h2 {
 /* About Section */
 /* Organisation en 2 colonnes : Galerie à gauche, Texte à droite */
 .about-section {
-  padding: 4rem 10%;
+  padding: 2rem 10%;
 }
 
 .about-grid {
