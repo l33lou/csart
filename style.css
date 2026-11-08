@@ -170,7 +170,6 @@ a {
   left: -250px;
   width: 220px;
   transform: translateY(-50%);
-  filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));
 }
 
 .page-transition-overlay.active .transition-cloud {
@@ -794,53 +793,48 @@ section h2 {
   text-decoration: underline;
   text-underline-offset: 4px; /* Décolle légèrement la ligne du texte */
 }
+/* ==========================================================================
+   SECTION ÉVÉNEMENTS (CARTES STYLE MATÉRIEL EN LARGEUR PC)
+   ========================================================================== */
 
-/* Events Section */
-.events-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+.events-section {
+  max-width: 1200px; /* Largeur généreuse pour PC */
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
 }
 
-.event-item {
-  display: flex;
-  align-items: center;
-  background-color: var(--bg-card);
+/* Grille 2 colonnes sur PC / 1 colonne sur Mobile */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+/* Style de carte dérivé de .eq-card avec texture */
+.event-card {
+  background-color: var(--bg-dark);
+  background-image: url('images/lace-h.png');
+  background-blend-mode: soft-light;
+
   border: 1px solid var(--accent-plum);
   padding: 1.5rem;
-  gap: 2rem;
-}
-
-.event-date {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--accent-plum);
-  border: 1px solid var(--accent-rose);
-  width: fit-content ;
-  padding-inline: 5px;
-  height: 70px;
-  flex-shrink: 0;
+  justify-content: space-between;
 }
 
-.event-date .frequency {
-  font-family: var(--font-title);
-  font-size: 1.8rem;
-  line-height: 1;
+.event-card p {
+  color: var(--text-light);
+}
+
+/*Élévation de la carte & bordure dorée */
+.event-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent-gold);
 }
 
 
-.event-details {
-  flex-grow: 1;
-}
-
-.event-tag {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  color: var(--accent-rose);
-  letter-spacing: 1px;
-}
 
 /* Kinepolics Banner */
 .kinepolics-banner {
