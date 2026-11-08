@@ -813,8 +813,8 @@ section h2 {
 
 /* Style de carte dérivé de .eq-card avec texture */
 .event-card {
-  background-color: var(--bg-dark);
-  background-image: url('images/lace-h.png');
+  background-color: var(--bg-card);
+  background-image: url('images/metal-swirls.jpg') center/cover no-repeat;
   background-blend-mode: soft-light;
 
   border: 1px solid var(--accent-plum);
@@ -831,7 +831,7 @@ section h2 {
 /*Élévation de la carte & bordure dorée */
 .event-card:hover {
   transform: translateY(-6px);
-  border-color: var(--accent-gold);
+  border-color: var(--accent-rose);
 }
 
 
