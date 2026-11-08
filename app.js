@@ -5,6 +5,41 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ------------------------------------------------------------------------
+     3. TRANSITION DE PAGE AU NUAGE DORÉ (AU CLIC SUR LES LIENS)
+     ------------------------------------------------------------------------ */
+  const pageOverlay = document.getElementById('page-transition-overlay');
+
+  if (pageOverlay) {
+    // Sécurité : S'assurer que le flou est bien désactivé par défaut à l'arrivée
+    pageOverlay.classList.remove('active');
+
+    // Cibler tous les liens navigables du site
+    const links = document.querySelectorAll('a[href]');
+
+    links.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        const target = link.getAttribute('target');
+
+        // Ignorer les liens externes, les ancres (#), mailto ou vers un nouvel onglet
+        if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('javascript:') || target === '_blank') {
+          return;
+        }
+
+        e.preventDefault(); // Suspend la navigation instantanée
+
+        // Déclencher l'overlay et la traversée du nuage
+        pageOverlay.classList.add('active');
+
+        // Naviguer vers la nouvelle page au milieu de l'animation du nuage (450ms)
+        setTimeout(() => {
+          window.location.href = href;
+        }, 450);
+      });
+    });
+  }
+
+  /* ------------------------------------------------------------------------
      1. ARRIÈRE-PLAN CANVAS : ÉTOILES SUIVANT LA SOURIS
      ------------------------------------------------------------------------ */
   let canvas = document.getElementById('cursor-canvas');
