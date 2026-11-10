@@ -725,33 +725,88 @@ section h2 {
   font-family: var(--font-title);
   border-top: 1px solid var(--accent-plum);
 }
+/* ==========================================================================
+   SECTION QUI SOMMES-NOUS / CLUBS (LAYOUT 2 COLONNES WHIMSIGOTH)
+   ========================================================================== */
 
-/* About Section */
-/* Organisation en 2 colonnes : Galerie à gauche, Texte à droite */
 .about-section {
-  padding: 2rem 10%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
 }
 
-.about-grid {
+/* Grille principale sur 2 colonnes côte à côte */
+.about-text {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Deux colonnes d'égale largeur */
-  gap: 3rem;
-  align-items: center;
+  grid-template-columns: 1fr 1fr; /* 2 colonnes de largeur égale */
+  gap: 3rem;                     /* Espace entre le texte et les clubs */
+  align-items: start;            /* Alignement en haut des deux colonnes */
+  margin-top: 2rem;
 }
 
-/* Style de la partie texte (à droite) */
-.about-text h2 {
-  text-align: left; /* Alignement du titre à gauche dans sa colonne */
-  font-family: var(--font-title);
-  font-size: 2.4rem;
+/* ------------------------------------------------------------------------
+   COLONNE 1 : PARAGRAPHES DE PRÉSENTATION (À GAUCHE)
+   ------------------------------------------------------------------------ */
+.about-description p {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
   color: var(--text-light);
-  margin-bottom: 1.5rem;
+  line-height: 1.65;
+  margin-bottom: 1.2rem;
 }
 
-.about-text p {
-  margin-bottom: 1.2rem;
+/* ------------------------------------------------------------------------
+   COLONNE 2 : CARTE DES CLUBS (À DROITE, STYLE ÉVÉNEMENT/MATÉRIEL)
+   ------------------------------------------------------------------------ */
+.clubs-card {
+  background: url('images/metal2.jpg') center/cover no-repeat;
+  background-blend-mode: multiply;
+  background-color: var(--bg-card); /* Fallback bordeaux/prune */
+  border: 1px solid var(--accent-plum);
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(36, 19, 44, 0.5);
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+              border-color 0.35s ease,
+}
+
+.clubs-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-rose);
+}
+
+/* Mise en forme de la liste des clubs */
+.clubs-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.clubs-card ul p,
+.clubs-card ul li {
   font-size: 1.1rem;
-  line-height: 1.6;
+  color: var(--text-light);
+  margin: 0;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Animation au survol d'un club */
+.clubs-card ul p:hover,
+.clubs-card ul li:hover {
+  color: var(--accent-gold);
+  transform: translateX(6px);
+}
+
+/* ------------------------------------------------------------------------
+   RESPONSIVE MOBILE
+   ------------------------------------------------------------------------ */
+@media (max-width: 850px) {
+  .about-text {
+    grid-template-columns: 1fr; /* Repasse sur 1 colonne sur écran mobile */
+    gap: 2rem;
+  }
 }
 
 
@@ -822,6 +877,8 @@ section h2 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+            border-color 0.35s ease,
 }
 
 .event-card p {
@@ -830,7 +887,7 @@ section h2 {
 
 /*Élévation de la carte & bordure dorée */
 .event-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-5px);
   border-color: var(--accent-rose);
 }
 
